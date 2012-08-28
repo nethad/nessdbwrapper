@@ -1,9 +1,9 @@
-cdef extern from "include/util.h":
+cdef extern from "lib/nessdb/engine/util.h":
     cdef struct slice:
         char* data
         int len
 
-cdef extern from "include/db.h":
+cdef extern from "lib/nessdb/engine/db.h":
     cdef struct nessdb:
         pass
 

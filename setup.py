@@ -6,7 +6,7 @@ from Cython.Distutils import build_ext
 ext_modules=[
     Extension("nessdbwrapper",
         sources=["nessdbwrapper.pyx"],
-        libraries=["lib/nessdb"])
+        libraries=["lib/nessdb/nessdb"])
 ]
 
 class CleanCommand(Command):
