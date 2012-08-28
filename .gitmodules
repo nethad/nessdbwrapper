@@ -1,0 +1,3 @@
+[submodule "lib/nessdb"]
+	path = lib/nessdb
+	url = git://github.com/shuttler/nessDB.git
