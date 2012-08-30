@@ -8,13 +8,13 @@ import sys
 import random
 import string
 import time
-import nessdbwrapper
+import pynessdb
 
 def gen_random_str(len):
 	return ''.join([random.choice('abcdefghijklmnoprstuvwyxzABCDEFGHIJKLMNOPRSTUVWXYZ') for i in range(len)])
 
 def ness_open(db_name):
-	return nessdbwrapper.NessDB("testdir")
+	return pynessdb.NessDB("testdir", False)
 
 def ness_write(db, c):
 	s_time = time.time()

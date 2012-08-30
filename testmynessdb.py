@@ -1,8 +1,8 @@
 __author__ = 'thomas'
 
-from nessdbwrapper import NessDB
+from pynessdb import NessDB
 
-n = NessDB("testdir")
+n = NessDB("testdir", False)
 
 key1 = "key"
 value1 = "lala"
