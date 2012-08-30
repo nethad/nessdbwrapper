@@ -13,11 +13,9 @@ and build it: In lib/nessdb execute `make`
 
 Then build pynessdb: In the root directory execute `python setup.py build_ext -i`
 
-There is no 'clean' command, use: 
+To clean: python setup.py clean
 
-rm -rf build/ pynessdb.c pynessdb.so <db-basedir>
+Run unit tests: `python tests.py`
 
-or: python setup.py clean
-
-Before executing you may have to set your LD_LIBRARY_PATH environment variable to include the lib/nessdb directory:
-`export LD_LIBRARY_PATH=./lib/nessdb;$LD_LIBRARY_PATH`
+NOTE: Before executing you may have to set your LD_LIBRARY_PATH environment variable to include the lib/nessdb directory:
+`export LD_LIBRARY_PATH=./lib/nessdb:$LD_LIBRARY_PATH`

@@ -8,12 +8,16 @@ cdef class NessDB:
     cdef nessdb* _c_nessdb
     cdef bytes basedir
 
-    def __cinit__(self, basedir, use_log_recovery):
+    #init just defined for nice code completion.
+    def __init__(self, basedir, use_log_recovery):
         """
         Opens a new database in the file system location identified by 'basedir' (relative to the execution directory).
         Set 'use_log_recovery' to 'True' to use log-file based recovery after database crashes (impedes performance),
         'False' does not use recovery.
         """
+        pass
+
+    def __cinit__(self, basedir, use_log_recovery):
         self.basedir = self._encode_as_utf8_string(basedir)
         self._c_nessdb = db_open(self.basedir, use_log_recovery)
 
