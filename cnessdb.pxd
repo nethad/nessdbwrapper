@@ -4,13 +4,12 @@ cdef extern from "lib/nessdb/engine/util.h":
         int len
 
 cdef extern from "lib/nessdb/engine/db.h":
-    cdef struct nessdb:
-        pass
+    cdef struct nessdb
 
     nessdb* db_open(char* basedir, bint is_log_recovery)
-    int db_get(nessdb* db, slice* sk, slice* sv)
+    int db_get(nessdb* db, slice* sk, slice* sv) except -1 #Return status: -1=error 0=NULL 1=exists
     bint db_exists(nessdb* db, slice* sk)
-    bint db_add(nessdb* db, slice* sk, slice* sv)
+    bint db_add(nessdb* db, slice* sk, slice* sv) except 0 #Return status: 1=ok 0=error
     void db_remove(nessdb* db, slice* sk)
     char* db_info(nessdb* db)
     void db_close(nessdb* db)
