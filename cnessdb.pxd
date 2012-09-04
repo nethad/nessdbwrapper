@@ -1,20 +1,25 @@
+#cdef extern from "time.h" nogil:
+#    ctypedef long time_t
+
 cdef extern from "lib/nessdb/engine/util.h":
     cdef struct slice:
         char* data
         int len
 
-    cdef struct buffer
+    cdef struct buffer:
+        pass
 
 cdef extern from "lib/nessdb/engine/index.h":
-    cdef struct index
+    cdef struct index:
+        pass
 
-    uint64_t index_allcount(index* idx)
+    long index_allcount(index* idx)
 
 cdef extern from "lib/nessdb/engine/db.h":
     cdef struct nessdb:
-        struct index* idx
-        struct buffer* buf
-        time_t start_time
+        index* idx
+#        buffer* buf
+#        time_t start_time
 
     nessdb* db_open(char* basedir, bint is_log_recovery)
     int db_get(nessdb* db, slice* sk, slice* sv) except -1 #Return status: -1=error 0=NULL 1=exists

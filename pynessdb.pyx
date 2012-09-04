@@ -91,6 +91,4 @@ cdef class NessDB:
         return str(s).encode('UTF-8')
 
     def __len__(self):
-        cdef index* cindex
-        cindex = self._c_nessdb.idx
-        return index_allcount(cindex)
+        return index_allcount(self._c_nessdb.idx)
