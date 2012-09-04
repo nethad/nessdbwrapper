@@ -91,4 +91,7 @@ cdef class NessDB:
         return str(s).encode('UTF-8')
 
     def __len__(self):
-        return index_allcount(self._c_nessdb.idx)
+        cdef int total_memtable_count = self._c_nessdb.idx.list.count
+        cdef long allcount = index_allcount(self._c_nessdb.idx)
+        cdef int bg_merge_count = self._c_nessdb.idx.bg_merge_count # TODO check if already included
+        return (allcount + total_memtable_count + bg_merge_count)

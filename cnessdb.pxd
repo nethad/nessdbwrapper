@@ -9,9 +9,14 @@ cdef extern from "lib/nessdb/engine/util.h":
     cdef struct buffer:
         pass
 
+cdef extern from "lib/nessdb/engine/skiplist.h":
+    cdef struct skiplist:
+        int count
+
 cdef extern from "lib/nessdb/engine/index.h":
     cdef struct index:
-        pass
+        int bg_merge_count
+        skiplist* list
 
     long index_allcount(index* idx)
 
