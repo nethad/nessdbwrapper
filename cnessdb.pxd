@@ -3,8 +3,18 @@ cdef extern from "lib/nessdb/engine/util.h":
         char* data
         int len
 
+    cdef struct buffer
+
+cdef extern from "lib/nessdb/engine/index.h":
+    cdef struct index
+
+    uint64_t index_allcount(index* idx)
+
 cdef extern from "lib/nessdb/engine/db.h":
-    cdef struct nessdb
+    cdef struct nessdb:
+        struct index* idx
+        struct buffer* buf
+        time_t start_time
 
     nessdb* db_open(char* basedir, bint is_log_recovery)
     int db_get(nessdb* db, slice* sk, slice* sv) except -1 #Return status: -1=error 0=NULL 1=exists
@@ -13,3 +23,4 @@ cdef extern from "lib/nessdb/engine/db.h":
     void db_remove(nessdb* db, slice* sk)
     char* db_info(nessdb* db)
     void db_close(nessdb* db)
+
